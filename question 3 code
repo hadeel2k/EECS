@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+void function(int a, int b, int c)
+{
+	if (c > 0x99)
+	{
+		return;
+	}
+	printf("%d", c);
+
+	function(a, b, c);
+}
+
+int main()
+{
+	function(0x1, 0x6, 0x99);
+}
