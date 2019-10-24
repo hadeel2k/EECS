@@ -1,9 +1,9 @@
-push ebp                                     
-mov  ebp,esp
-and  esp,0FFFFFFF0h
-sub  esp,20h
-call _ main
-mov dword ptr[esp+1Ch],3
+push ebp                     // push                                   
+mov  ebp,esp                // move esp to ebp
+and  esp,0FFFFFFF0h        //  source :dst=dst & src
+sub  esp,20h              // subtract 20h-esp= esp , source: dst= dst - src
+call _ main               // call main
+mov dword ptr[esp+1Ch],3      //mov 3 to dword ptr[esp+1Ch]
 mov dword ptr[esp+18h],5
 mov dword ptr[esp+14h],0
 mov eax ,[esp+1Ch]
