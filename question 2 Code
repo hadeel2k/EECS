@@ -1,0 +1,16 @@
+int main()
+{
+	int arr[] = { 0x0c, 0x0f, 0xdd, 3, 0xb0, 0x36, 0x10, 0x43, 0, 0 };
+	int n = 7;
+	for(arr[8] = 0; arr[8] < n; arr[8]++)
+	{
+		if(arr[9] < arr[arr[8]])
+		{
+			arr[9] = arr[arr[8]];
+		}
+	}
+
+	printf("%d\n", arr[9]);
+
+	return 0;
+}
