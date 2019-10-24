@@ -6,8 +6,8 @@ call _ main               // call main
 mov dword ptr[esp+1Ch],3      //mov 3 to dword ptr[esp+1Ch]
 mov dword ptr[esp+18h],5
 mov dword ptr[esp+14h],0
-mov eax ,[esp+1Ch]
-imul eax ,[esp+18h]
+mov eax ,[esp+1Ch]         // mov[esp+1Ch] to eax
+imul eax ,[esp+18h]        // ax=al* op
 mov edx,eax
 mov eax,[esp+1Ch]
 mov ecx,eax
