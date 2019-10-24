@@ -1,33 +1,42 @@
-push ebp
-mov ebp, esp
-and esp, 0FFFFFFF0h sub esp, 40h
-call ___main
-mov dword ptr [esp+18h], 0Ch mov dword ptr [esp+1Ch], 0Fh
-mov dword ptr [esp+20h], 0DDh mov dword ptr [esp+24h], 3
-mov dword ptr [esp+28h], 1B0h mov dword ptr [esp+2Ch], 36h mov dword ptr [esp+30h], 10h
-mov dword ptr [esp+34h], 43h mov dword ptr [esp+3Ch], 0
-mov dword ptr [esp+38h], 0 jmp short loc_40157F
-; ------------------------------------------------------ loc_401560:
-; CODE XREF: _main+84↓j
-loc_40157A:
-loc_40157F:
-mov mov cmp
-jle
-mov mov mov
-add
-cmp jle mov
-mov
-eax, [esp+38h]
-eax, [esp+eax*4+18h] eax, [esp+3Ch]
-short loc_40157A eax, [esp+38h]
-eax, [esp+eax*4+18h] [esp+3Ch], eax
-; CODE XREF: _main+6C↑j dword ptr [esp+38h], 1
-; CODE XREF: _main+5E↑j dword ptr [esp+38h], 7
-short loc_401560 eax, [esp+3Ch]
-[esp+4], eax
-mov
-call _printf
-mov eax, 0
-dword ptr [esp], offset aD ; "%d"
+push ebp                                         // push
+mov ebp, esp                                     // mov esp to ebp
+and esp, 0FFFFFFF0h                             // esp updated, dst=dst&src
+sub esp, 40h                                     // subtract esp= esp - 40h , dst=dst - src
+call ___main                                     // save return call location
+mov dword ptr [esp+18h], 0Ch 
+mov dword ptr [esp+1Ch], 0Fh
+mov dword ptr [esp+20h], 0DDh 
+mov dword ptr [esp+24h], 3
+mov dword ptr [esp+28h], 1B0h 
+mov dword ptr [esp+2Ch], 36h 
+mov dword ptr [esp+30h], 10h
+mov dword ptr [esp+34h], 43h 
+mov dword ptr [esp+3Ch], 0
+mov dword ptr [esp+38h], 0
+jmp short loc_40157F                       // jumb to loc_40157F    
+; ------------------------------------------------------ 
+loc_401560:                         ; CODE XREF: _main+84↓j
+mov eax, [esp+38h]              // mov [esp+38h] to eax
+mov eax, [esp+eax*4+18h]        // mov [esp+eax*4+18h] to eax
+cmp eax, [esp+3Ch]              // compare src1,src2 set cc based on src1- src2
+jle short loc_40157A            // jumb less (signed), jumb to loc_40157A 
+mov eax, [esp+38h]              // mov [esp+38h] to eax
+mov eax, [esp+eax*4+18h]        // mov [esp+eax*4+18h] to eax
+mov [esp+3Ch], eax              // mov eax to [esp+3Ch]
+
+
+
+loc_40157A:                      ; CODE XREF: _main+6C↑j
+add dword ptr [esp+38h], 1     // add 1 to [esp+38h]
+
+loc_40157F:                        ; CODE XREF: _main+5E↑j
+cmp dword ptr [esp+38h], 7           // compare src1,src2 set cc based on src1- src2
+jle short loc_401560                 // jumb less (signed), jumb to loc_401560 
+mov eax, [esp+3Ch]                   // mov [esp+3Ch] to eax
+mov [esp+4], eax                     // mov eax to [esp+4]
+mov dword ptr [esp], offset aD ; "%d"     
+call _printf                          // print 
+mov eax, 0                            //  mov 0 to eax
+leave
 retn 
 _main endp
