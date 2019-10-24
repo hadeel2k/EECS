@@ -1,27 +1,27 @@
-push ebp                     // push                                   
-mov  ebp,esp                // move esp to ebp
-and  esp,0FFFFFFF0h        //  source :dst=dst & src
-sub  esp,20h              // subtract 20h-esp= esp , source: dst= dst - src
-call _ main               // call main
-mov dword ptr[esp+1Ch],3      //mov 3 to dword ptr[esp+1Ch]
-mov dword ptr[esp+18h],5
-mov dword ptr[esp+14h],0
+push ebp                           // push                                   
+mov  ebp,esp                      // move esp to ebp
+and  esp,0FFFFFFF0h              //  source :dst=dst & src
+sub  esp,20h                    // subtract  esp=esp-20h , source: dst= dst - src
+call _ main                    // call main
+mov dword ptr[esp+1Ch],3      //mov 3 to dword ptr[esp+1Ch], ( take 3 and go to the stack address, at top of the stack esp go +28 bytes down into the stack and overwrite one dword)
+mov dword ptr[esp+18h],5     // mov 5 to dword ptr[esp+18h]
+mov dword ptr[esp+14h],0    // mov 0 to dword ptr[esp+14h]
 mov eax ,[esp+1Ch]         // mov[esp+1Ch] to eax
-imul eax ,[esp+18h]        // ax=al* op
-mov edx,eax
-mov eax,[esp+1Ch]
-mov ecx,eax
-shr ecx,1Fh
-add eax,ecx
-sar eax,1
-sub edx,eax
-mov eax,edx
-mov [esp+14h],eax
-mov eax, [esp+14h]
-mov [esp+4],eax
-mov dword ptr[esp], offset aD; "%d"
-call _printf
-mov  eax,0
-leave
+imul eax ,[esp+18h]        //   eax= [esp+18h]*eax         ax=ax* op
+mov edx,eax                 //mov eax to edx
+mov eax,[esp+1Ch]           // mov [esp+1Ch] to eax
+mov ecx,eax                 // mov eax to ecx
+shr ecx,1Fh                 //  shift right source :dst=dst>> shift (logic)
+add eax,ecx                 // eax=eax+ecx    source :dst=dst+ src
+sar eax,1                   // shift arthimatic one bit source :dst=dst>> shift (arith)
+sub edx,eax                  // subtract  edx=edx-eax , source: dst= dst - src
+mov eax,edx                   // mov edx to eax
+mov [esp+14h],eax              // mov eax to [esp+14h]
+mov eax, [esp+14h]             // mov [esp+14h] to eax
+mov [esp+4],eax                // mov eax to [esp+4]
+mov dword ptr[esp], offset aD; "%d"   // print  
+call _printf                     //print
+mov  eax,0                      // mov 0 to eax
+leave                           // return
 retn
-_main endp
+_main endp                      // done
