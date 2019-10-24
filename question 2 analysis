@@ -1,0 +1,33 @@
+push ebp
+mov ebp, esp
+and esp, 0FFFFFFF0h sub esp, 40h
+call ___main
+mov dword ptr [esp+18h], 0Ch mov dword ptr [esp+1Ch], 0Fh
+mov dword ptr [esp+20h], 0DDh mov dword ptr [esp+24h], 3
+mov dword ptr [esp+28h], 1B0h mov dword ptr [esp+2Ch], 36h mov dword ptr [esp+30h], 10h
+mov dword ptr [esp+34h], 43h mov dword ptr [esp+3Ch], 0
+mov dword ptr [esp+38h], 0 jmp short loc_40157F
+; ------------------------------------------------------ loc_401560:
+; CODE XREF: _main+84↓j
+loc_40157A:
+loc_40157F:
+mov mov cmp
+jle
+mov mov mov
+add
+cmp jle mov
+mov
+eax, [esp+38h]
+eax, [esp+eax*4+18h] eax, [esp+3Ch]
+short loc_40157A eax, [esp+38h]
+eax, [esp+eax*4+18h] [esp+3Ch], eax
+; CODE XREF: _main+6C↑j dword ptr [esp+38h], 1
+; CODE XREF: _main+5E↑j dword ptr [esp+38h], 7
+short loc_401560 eax, [esp+3Ch]
+[esp+4], eax
+mov
+call _printf
+mov eax, 0
+dword ptr [esp], offset aD ; "%d"
+retn 
+_main endp
