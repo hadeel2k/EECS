@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+// question 1
+/*
+int main()
+{
+	printf("%d", 14);
+
+	return 0;
+}
