@@ -58,10 +58,10 @@ loc_40151b:
 	imul eax, [esp+10h]
 	add eax, edx              // eax= eax+edx
 	cmp eax, [esp+1ch]        // compare src1, src1, src2  ; set cc based on src1-src2
-	jnz short loc_4015d1      //jumb
+	jnz short loc_4015d1      //jumb whenever not 0
 	mov eax, [esp+1ch]        // mov [esp+1ch] to eax
 	mov [esp+4h], eax         // mov eax to [esp+4h]
-	mov dword ptr [esp], offset ad ; "%d"
+	mov dword ptr [esp], offset ad ; "%d"  // load the stack 
 	call _printf              // print 
   loc_4015d1:
 	add dword ptr [esp+1ch], 1    // add 1 
