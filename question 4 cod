@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int average(int *a, int n, int z)
+{
+	int i;
+	int sum;
+
+	sum = 0;
+
+	for (i = 0; i < n; i++)
+	{
+		sum += a[i];
+	}
+	sum /= n;
+
+	return sum;
+}
+
+int main()
+{
+	int arr[100];
+	int i;
+
+	for (i = 0; i < 100; i++)
+	{
+		arr[i] = i + 1;
+	}
+
+	printf("%d\n", average(arr, 100, 7));
+
+	i = fgetc(stdin);
+
+	return 0;
+}
