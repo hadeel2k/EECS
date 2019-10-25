@@ -19,7 +19,7 @@ mov eax,edx                   // mov edx to eax
 mov [esp+14h],eax              // mov eax to [esp+14h]
 mov eax, [esp+14h]             // mov [esp+14h] to eax
 mov [esp+4],eax                // mov eax to [esp+4]
-mov dword ptr[esp], offset aD; "%d"   // print  
+mov dword ptr[esp], offset aD; "%d"   // load the stack
 call _printf                     //print
 mov  eax,0                      // mov 0 to eax
 leave                           // return
