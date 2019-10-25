@@ -46,16 +46,16 @@ loc_40151b:
 	mov eax, ecx                  // mov ecx to eax
 	mov [esp+10h], eax           // mov eax to [esp+10h]
 	mov eax, [esp+18h]           // mov [esp+18h] to eax
-	imul eax, [esp+18h]          
-	imul eax, [esp+18h]
+	imul eax, [esp+18h]          // dx:ax= ax *op , eax= eax * [esp+18h] 
+	imul eax, [esp+18h]          // dx:ax= ax *op ,eax= eax * [esp+18h] 
 	mov edx, eax                 // mov eax to edx 
 	mov eax, [esp+14h]          // mov [esp+14h]  to eax
-	imul eax, [esp+14h]      
-	imul eax, [esp+14h]
+	imul eax, [esp+14h]        // dx:ax= ax *op  , eax= eax * [esp+14h] 
+	imul eax, [esp+14h]         // dx:ax= ax *op , eax= eax * [esp+14h] 
 	add edx, eax               // edx= edx+eax
 	mov eax, [esp+10h]        // mov [esp+10h]  to eax
-	imul eax, [esp+10h]
-	imul eax, [esp+10h]
+	imul eax, [esp+10h]       // dx:ax= ax *op , eax= eax * [esp+10h]
+	imul eax, [esp+10h]       // dx:ax= ax *op , eax= eax * [esp+10h]
 	add eax, edx              // eax= eax+edx
 	cmp eax, [esp+1ch]        // compare src1, src1, src2  ; set cc based on src1-src2
 	jnz short loc_4015d1      //jumb whenever not 0
@@ -64,7 +64,7 @@ loc_40151b:
 	mov dword ptr [esp], offset ad ; "%d"  // load the stack 
 	call _printf              // print 
   loc_4015d1:
-	add dword ptr [esp+1ch], 1    // add 1 
+	add dword ptr [esp+1ch], 1    // add 1 to dword ptr [esp+1ch]
 
 loc_4015d6:
 	cmp dword ptr [esp+1ch], 3e7h    // compare src1, src1, src2  ; set cc based on src1-src2
