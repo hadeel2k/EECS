@@ -57,7 +57,7 @@ loc_40151b:
 	imul eax, [esp+10h]       // dx:ax= ax *op , eax= eax * [esp+10h]
 	imul eax, [esp+10h]       // dx:ax= ax *op , eax= eax * [esp+10h]
 	add eax, edx              // eax= eax+edx
-	cmp eax, [esp+1ch]        // compare src1, src1, src2  ; set cc based on src1-src2
+	cmp eax, [esp+1ch]        // compare src1, src1, src2  ; set cc based on src1-src2 , copmare eax - [esp+1ch] = if less than 0 dont jumb
 	jnz short loc_4015d1      //jumb whenever not 0
 	mov eax, [esp+1ch]        // mov [esp+1ch] to eax
 	mov [esp+4h], eax         // mov eax to [esp+4h]
@@ -67,7 +67,7 @@ loc_40151b:
 	add dword ptr [esp+1ch], 1    // add 1 to dword ptr [esp+1ch]
 
 loc_4015d6:
-	cmp dword ptr [esp+1ch], 3e7h    // compare src1, src1, src2  ; set cc based on src1-src2
+	cmp dword ptr [esp+1ch], 3e7h    // compare src1, src1, src2  ; set cc based on src1-src2 ,  copmare dword ptr [esp+1ch] - 3e7h = if less than 0 dont jumb
 	jle loc_40151b                  // jumb less equal (signed), jumb to loc_40151b  
   mov eax, 0                            // mov 0 to eax
   leave
