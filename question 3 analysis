@@ -1,77 +1,79 @@
+push ebp                              // push 
+mov ebp, esp                          // mov esp to ebp
+and esp, 0ffffff0h                    // dst= dst& src
+sub esp, 20h                          // esp= esp -20 h
+call _main                            // main 
+mov dword ptr [esp+1ch], 64h          // mov 64h  to dword ptr [esp+1ch]
+jmp loc_4015d6                         // jumb to  loc_4015d6
+loc_40151b:
 
-push ebp
-mov ebp, esp
-and esp, 0FFFFFF0H
-sub esp, 20H
-call _main
-mov dword ptr [esp+1cH], 64H
-jmp loc_4015D6
-loc_40151B:
+	mov ecx, [esp+1ch]            // mov [esp+1ch]  to  ecx
+	mov edx, 51eb851fh            // mov 51eb851fh to edx
+	mov eax, ecx                  // mov ecx to eax
+	imul edx                      // ax= al * op
+	sar edx, 5                    // dst= dst >> shift (arith)
+	mov eax, ecx                  // mov ecx to eax
+	sar eax, 1fh                  // dst= dst >> shift (arith)
+	sub edx, eax                  // edx=edx-eax
+	mov eax, edx                  // mov edx to eax
+	mov [esp+18h], eax            // mov eax to [esp+18h]
+	mov eax, [esp+18h]            // mov [esp+18h] to eax
+	imul edx, eax, -64h           // edx:eax= eax * op
+	mov eax, [esp+1ch]            // mov [esp+1ch] to eax
+	lea ecx, [edx+eax]            // load the adress value , dst = add . of src
+	mov edx, 66666667h            // mov 66666667h to edx
+	mov eax, ecx                  // mov ecx to eax
+	imul edx                      //ax= al * op
+	sar edx, 2                    //dst= dst >> shift (arith)
+	mov eax, ecx                  // mov ecx to eax
+	sar eax, 1fh                  //dst= dst >> shift (arith)
+	sub edx, eax                  // edx= edx - eax
+	mov eax, edx                  // mov edx to eax
+	mov [esp+14h], eax            // mov eax to [esp+14h]
+	mov ecx, [esp+1ch]            // mov [esp+1ch]  to ecx
+	mov edx, 66666667h            // mov 66666667h  to edx
+	mov eax, ecx                  // mov ecx to eax
+	imul edx                      //ax= al * op
+	sar edx, 2                    //dst= dst >> shift (arith)
+	mov eax, ecx                  // mov ecx to eax
+	sar eax, 1fh                  // dst= dst >> shift (arith)
+	sub edx, eax                  // edx= edx- eax
+	mov eax, edx                  // mov edx to eax
+	sal eax, 2                    // dst = dst << shift
+	add eax, edx                  // eax= eax+ edx
+	add eax, eax                  // eax= eax+ eax
+	sub ecx, eax                  // ecx= ecx- eax
+	mov eax, ecx                  // mov ecx to eax
+	mov [esp+10h], eax           // mov eax to [esp+10h]
+	mov eax, [esp+18h]           // mov [esp+18h] to eax
+	imul eax, [esp+18h]          
+	imul eax, [esp+18h]
+	mov edx, eax                 // mov eax to edx 
+	mov eax, [esp+14h]          // mov [esp+14h]  to eax
+	imul eax, [esp+14h]      
+	imul eax, [esp+14h]
+	add edx, eax               // edx= edx+eax
+	mov eax, [esp+10h]        // mov [esp+10h]  to eax
+	imul eax, [esp+10h]
+	imul eax, [esp+10h]
+	add eax, edx              // eax= eax+edx
+	cmp eax, [esp+1ch]        // compare src1, src1, src2  ; set cc based on src1-src2
+	jnz short loc_4015d1      //jumb
+	mov eax, [esp+1ch]        // mov [esp+1ch] to eax
+	mov [esp+4h], eax         // mov eax to [esp+4h]
+	mov dword ptr [esp], offset ad ; "%d"
+	call _printf              // print 
+  loc_4015d1:
+	add dword ptr [esp+1ch], 1    // add 1 
 
-	mov ecx, [ESP+1CH]
-	MOV EDX, 51EB851FH
-	MOV EAX, ECX
-	IMUL EDX
-	SAR EDX, 5
-	MOV EAX, ECX
-	SAR EAX, 1FH
-	SUB EDX, EAX
-	MOV EAX, EDX
-	MOV [ESP+18H], EAX
-	MOV EAX, [ESP+18H]
-	IMUL EDX, EAX, -64H
-	MOV EAX, [ESP+1CH]
-	LEA ECX, [EDX+EAX]
-	MOV EDX, 66666667H
-	MOV EAX, ECX
-	IMUL EDX
-	SAR EDX, 2
-	MOV EAX, ECX
-	SAR EAX, 1FH
-	SUB EDX, EAX
-	MOV EAX, EDX
-	MOV [ESP+14H], EAX
-	MOV ECX, [ESP+1CH]
-	MOV EDX, 66666667H
-	MOV EAX, ECX
-	IMUL EDX
-	SAR EDX, 2
-	MOV EAX, ECX
-	SAR EAX, 1FH
-	SUB EDX, EAX
-	MOV EAX, EDX
-	SAL EAX, 2
-	ADD EAX, EDX
-	ADD EAX, EAX
-	SUB ECX, EAX
-	MOV EAX, ECX
-	MOV [ESP+10H], EAX
-	MOV EAX, [ESP+18H]
-	IMUL EAX, [ESP+18H]
-	IMUL EAX, [ESP+18H]
-	MOV EDX, EAX
-	MOV EAX, [ESP+14H]
-	IMUL EAX, [ESP+14H]
-	IMUL EAX, [ESP+14H]
-	ADD EDX, EAX
-	MOV EAX, [ESP+10H]
-	IMUL EAX, [ESP+10H]
-	IMUL EAX, [ESP+10H]
-	ADD EAX, EDX
-	CMP EAX, [ESP+1CH]
-	JNZ SHORT loc_4015D1
-	MOV EAX, [ESP+1CH]
-	MOV [ESP+4H], EAX
-	MOV DWORD PTR [ESP], OFFSET aD ; "%d"
-	call _printf
-  loc_4015D1:
-	ADD DWORD PTR [ESP+1CH], 1
-
-loc_4015D6:
-	CMP DWORD PTR [ESP+1CH], 3E7H
-	JLE loc_40151B
-  MOV EAX, 0
-  LEAVE
-  RETN
+loc_4015d6:
+	cmp dword ptr [esp+1ch], 3e7h    // compare src1, src1, src2  ; set cc based on src1-src2
+	jle loc_40151b                  // jumb less equal (signed), jumb to loc_40151b  
+  mov eax, 0                            // mov 0 to eax
+  leave
+  retn
   endp
+
+
+
 
