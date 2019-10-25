@@ -34,7 +34,7 @@ cmp dword ptr [esp+38h], 7           // compare src1,src2 set cc based on src1- 
 jle short loc_401560                 // jumb less (signed), jumb to loc_401560 
 mov eax, [esp+3Ch]                   // mov [esp+3Ch] to eax
 mov [esp+4], eax                     // mov eax to [esp+4]
-mov dword ptr [esp], offset aD ; "%d"     
+mov dword ptr [esp], offset aD ; "%d"     // load the stack
 call _printf                          // print 
 mov eax, 0                            //  mov 0 to eax
 leave
