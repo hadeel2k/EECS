@@ -73,5 +73,5 @@ loc_4015D6:
   MOV EAX, 0
   LEAVE
   RETN
-	endp
+  endp
 
